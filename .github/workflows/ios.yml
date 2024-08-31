@@ -55,11 +55,11 @@ jobs:
       run: dotnet workload install maui
     - name: Publish App
       run: |
-            dotnet publish -f net8.0-ios -c Release -p:ArchiveOnBuild=true -p:RuntimeIdentifier=ios-arm64 -p:CodesignKey="${{ env.CODE_SIGNING_KEY }}" -p:CodesignProvision="MyCustomProfileName"
+            dotnet publish -f net9.0-ios -c Release -p:ArchiveOnBuild=true -p:RuntimeIdentifier=ios-arm64 -p:CodesignKey="${{ env.CODE_SIGNING_KEY }}" -p:CodesignProvision="MyCustomProfileName"
     - name: Get IPA Path
       id: find-ipa
       run: |
-         echo "ipa-path=$(find SampleApp/bin/Release/net8.0-ios/ios-arm64/publish -name "*.ipa")"  >> $GITHUB_ENV
+         echo "ipa-path=$(find SampleApp/bin/Release/net9.0-ios/ios-arm64/publish -name "*.ipa")"  >> $GITHUB_ENV
          mkdir -p ~/private_keys
          echo -e "${{ secrets.APIKEY }}" > ~/private_keys/AuthKey_${{ secrets.KEYID }}.p8
          
